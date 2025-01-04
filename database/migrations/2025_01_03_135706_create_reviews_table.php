@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
+            // $table->unsignedBigInteger('book_id');
             $table->text('review');
             $table->unsignedTinyInteger('rating');
             $table->timestamps();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            // $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+
+            // 也可以省略以上两行，这样写
+            $table->foreignId('book_id')->constrained()->cascadeOnDelete();
         });
     }
 
